@@ -24,17 +24,21 @@
           },
           payment: function() {
             return new Promise(resolve => {
+              window.postMessage("payment");
               resolve("EC-2UJ27690GT3864519");
             });
           },
           onAuthorize: function(data, actions) {
             document.getElementById("test").style.backgroundColor = "green";
+            window.postMessage("authorized");
           },
           onCancel: function(data, actions) {
             // Show a cancel page or return to cart
+            window.postMessage("cancelled");
             document.getElementById("test").style.backgroundColor = "yellow";
           },
           onError: function() {
+            window.postMessage("error");
             document.getElementById("test").style.backgroundColor = "red";
           }
         },
